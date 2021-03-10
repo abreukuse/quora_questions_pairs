@@ -1,16 +1,9 @@
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer
-from functions import *
+from functions import basic_feature_engineering, fuzzy_features, drop_original_columns
+from config import VARIABLES, HYPERPARAMETERS
 
 pipeline = Pipeline([
-                     (
-                         'select_variables',
-                         FunctionTransformer(select_variables, kw_args={'variables': VARIABLES})
-                     ),
-                     (
-                         'dropna',
-                         FunctionTransformer(dropna)
-                     ),
                      (
                          'basic_feature_engineering', 
                           FunctionTransformer(basic_feature_engineering)
@@ -20,8 +13,16 @@ pipeline = Pipeline([
                           FunctionTransformer(fuzzy_features)
                       ),
                      (
-                         'drop',
-                         FunctionTransformer(drop, kw_args={'variables': VARIABLES})
+                         'drop_original_columns',
+                         FunctionTransformer(drop_original_columns, kw_args={'variables': VARIABLES})
+                     ),
+                     (
+                         'Scaling',
+                         StandardScaler()
+                     ),
+                     (
+                         'algorithm',
+                         LogisticRegression(**HYPERPARAMETERS)
                      )
                      ]
                     )
