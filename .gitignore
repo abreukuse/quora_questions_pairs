@@ -3,3 +3,5 @@ is_that_a_duplicate_quora_question/*
 quora_questions_pairs/datasets/*
 !quora_questions_pairs/datasets/.gitkeep
 .venv/*
+ quora_questions_pairs/trained_models/*
+!quora_questions_pairs/trained_models/.gitkeep
