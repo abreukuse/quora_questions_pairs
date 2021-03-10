@@ -1,20 +1,10 @@
 import pandas as pd
 from rapidfuzz import fuzz
-
-VARIABLES = ['question1', 'question2']
-
-def select_variables(X, variables):
-    """Select the questions variables"""
-    X = X[variables].copy()
-    return X
-
-def dropna(X):
-    """Drop NaN samples"""
-    X = X.dropna()
-    return X
+# from config import VARIABLES
 
 def basic_feature_engineering(X):
     """Extract some basic features"""
+    X = X.copy()
     print('*Creating basic features.')
     for i, column in enumerate(X.columns):
         X[f'len_q{i+1}'] = X[f'question{i+1}'].apply(lambda a: len(a))
@@ -26,6 +16,7 @@ def basic_feature_engineering(X):
 
 def fuzzy_features(X):
     """Generate fuzzy based features"""
+    X = X.copy()
     print('*Creating fuzzy features.')
     attributes = ['QRatio',
                   'WRatio',
@@ -39,7 +30,7 @@ def fuzzy_features(X):
         X[f'fuzz_{attribute}'] = [getattr(fuzz, attribute)(a, b) for a, b in zip(X['question1'], X['question2'])]
     return X
 
-def drop(X, variables):
+def drop_original_columns(X, variables):
     """Drop the original questions columns"""
     X = X.drop(columns=variables)
     return X
