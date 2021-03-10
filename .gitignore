@@ -1,3 +1,5 @@
 GoogleNews-vectors-negative300.bin.gz
 is_that_a_duplicate_quora_question/*
-.venv
+.venv/*
+quora_questions_pairs/datasets/*
+!quora_questions_pairs/datasets/.gitkeep
