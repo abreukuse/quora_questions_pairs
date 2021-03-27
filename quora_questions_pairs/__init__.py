@@ -1,4 +1,4 @@
-from quora_questions_pairs import config
+import quora_questions_pairs.config
 
 VERSION_PATH = config.PACKAGE_ROOT / 'VERSION'
 
