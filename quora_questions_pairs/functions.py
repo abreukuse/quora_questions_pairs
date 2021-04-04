@@ -2,8 +2,11 @@ import pandas as pd
 import numpy as np
 from rapidfuzz import fuzz
 import os
-from quora_questions_pairs.config import TRAINING_DATA_DIR, X_TRAIN
+from quora_questions_pairs.config import TRAINING_DATA_DIR, X, TARGET
+from quora_questions_pairs.data_management import data_split
 from quora_questions_pairs import __version__ as version
+
+X_TRAIN = data_split(X, TARGET)[0]
 
 def basic_feature_engineering(X):
 	"""Extract some basic features"""
