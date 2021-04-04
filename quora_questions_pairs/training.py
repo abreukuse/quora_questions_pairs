@@ -2,17 +2,14 @@ import pandas as pd
 import joblib
 from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score
-from config import (X_TRAIN, 
-                    X_VALIDATION,
-                    Y_TRAIN,
-                    Y_VALIDATION, 
-                    VARIABLES, 
-                    RANDOM_STATE, 
-                    SPLITS, 
-                    TRAINED_MODEL_DIR)
-from pipeline import training_pipeline
+from quora_questions_pairs.config import  X, TARGET, VARIABLES, RANDOM_STATE, SPLITS, TRAINED_MODEL_DIR
+from quora_questions_pairs.data_management import data_split
+from quora_questions_pairs.pipeline import training_pipeline
+from quora_questions_pairs.evaluation import evaluation
 from quora_questions_pairs import __version__ as version
 
+
+X_train, X_validation, y_train, y_validation = data_split(X, TARGET)
 
 def save_pipeline(*, pipeline_to_persist) -> None:
     """Persist the pipeline"""
@@ -27,13 +24,18 @@ def run_training(*, X_train, X_validation, y_train, y_validation):
     training_pipeline.fit(X_train, y_train)
     y_pred = training_pipeline.predict(X_validation)
     
-    print(f'EVALUATION: {accuracy_score(y_validation, y_pred)}')
+    accuracy, precision, recall, f1_score = evaluation(y_validation, y_pred)
+    print(f'accuracy: {accuracy}\n',
+          f'precision: {precision}\n',
+          f'recall: {recall}\n',
+          f'f1_score: {f1_score}')
+
     save_pipeline(pipeline_to_persist=training_pipeline)
 
 if __name__ == '__main__':
     run_training(
-                 X_train=X_TRAIN, 
-                 X_validation=X_VALIDATION,
-                 y_train=Y_TRAIN, 
-                 y_validation=Y_VALIDATION
+                 X_train=X_train, 
+                 X_validation=X_validation,
+                 y_train=y_train, 
+                 y_validation=y_validation
                  )
