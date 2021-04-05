@@ -53,10 +53,5 @@ def training_data_snapshot(X):
 		print('* Saving training data.')
 		X.head(10).to_csv(file_path, index=False, header=True)
 		return X
-
-	elif isinstance(X, np.ndarray) and all(X.index.isin(X_TRAIN.index)):
-		print('* Saving training data.')
-		np.savetxt(file_path, X[:10, :], delimiter = ",")
-		return X
 	else:
 		return X
