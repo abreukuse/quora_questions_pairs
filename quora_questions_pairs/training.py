@@ -24,11 +24,8 @@ def run_training(*, X_train, X_validation, y_train, y_validation):
     training_pipeline.fit(X_train, y_train)
     y_pred = training_pipeline.predict(X_validation)
     
-    accuracy, precision, recall, f1_score = evaluation(y_validation, y_pred)
-    print(f'accuracy: {accuracy}\n',
-          f'precision: {precision}\n',
-          f'recall: {recall}\n',
-          f'f1_score: {f1_score}')
+    # Print validation metrics results
+    evaluation(y_validation, y_pred)
 
     save_pipeline(pipeline_to_persist=training_pipeline)
 
