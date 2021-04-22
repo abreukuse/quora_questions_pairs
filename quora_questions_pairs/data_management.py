@@ -1,6 +1,9 @@
 import pandas as pd
 from sklearn.model_selection import KFold
-from quora_questions_pairs.config import X, TARGET, SPLITS, RANDOM_STATE
+from quora_questions_pairs.config import DATASETS_DIR, SPLITS, RANDOM_STATE
+
+X = pd.read_csv(DATASETS_DIR / 'train.csv', usecols=['question1', 'question2']).dropna()
+TARGET = pd.read_csv(DATASETS_DIR / 'train.csv', usecols=['is_duplicate'], squeeze=True).iloc[X.index]
 
 def data_split(X, y):
     """Get the last fold in the cross validation process due to reproducibility purposes"""

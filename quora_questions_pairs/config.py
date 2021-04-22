@@ -17,5 +17,3 @@ HYPERPARAMETERS = {'C': 1,
                    'random_state': RANDOM_STATE,
                    'n_jobs': -1}
 
-X = pd.read_csv(DATASETS_DIR / 'train.csv', usecols=['question1', 'question2']).dropna()
-TARGET = pd.read_csv(DATASETS_DIR / 'train.csv', usecols=['is_duplicate'], squeeze=True).iloc[X.index]
