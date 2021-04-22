@@ -2,8 +2,8 @@ import pandas as pd
 import joblib
 from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score
-from quora_questions_pairs.config import  X, TARGET, VARIABLES, RANDOM_STATE, SPLITS, TRAINED_MODEL_DIR
-from quora_questions_pairs.data_management import data_split
+from quora_questions_pairs.config import VARIABLES, RANDOM_STATE, SPLITS, TRAINED_MODEL_DIR
+from quora_questions_pairs.data_management import X, TARGET, data_split
 from quora_questions_pairs.pipeline import training_pipeline
 from quora_questions_pairs.evaluation import evaluation
 from quora_questions_pairs import __version__ as version
