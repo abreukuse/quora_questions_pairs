@@ -3,10 +3,10 @@ import numpy as np
 from rapidfuzz import fuzz
 import os
 from quora_questions_pairs.config import TRAINING_DATA_DIR
-from quora_questions_pairs.data_management import X, TARGET, data_split
+from quora_questions_pairs.data_management import data_split
 from quora_questions_pairs import __version__ as version
 
-X_TRAIN = data_split(X, TARGET)[0]
+# X_TRAIN = data_split(X, TARGET)[0]
 
 def basic_feature_engineering(X):
 	"""Extract some basic features"""
@@ -42,16 +42,3 @@ def drop_original_columns(X, variables):
 	X = X.drop(columns=variables)
 	return X
 
-def training_data_snapshot(X):
-	"""Save a sample of the training data right before it enters in the algorithm"""
-	if not os.path.isdir(TRAINING_DATA_DIR):
-		os.mkdir(TRAINING_DATA_DIR)
-		
-	file_path = TRAINING_DATA_DIR / f'training_data_v{version}.csv'
-
-	if isinstance(X, pd.DataFrame) and all(X.index.isin(X_TRAIN.index)):
-		print('* Saving training data.')
-		X.head(10).to_csv(file_path, index=False, header=True)
-		return X
-	else:
-		return X
