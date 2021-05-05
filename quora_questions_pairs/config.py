@@ -1,6 +1,5 @@
 import pathlib
 import pandas as pd
-from sklearn.model_selection import KFold
 
 PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent
 DATASETS_DIR = PACKAGE_ROOT / 'datasets'
