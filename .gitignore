@@ -11,3 +11,8 @@ quora_questions_pairs/__pycache__/
 quora_questions_pairs/training_data/
 !quora_questions_pairs/training_data/.gitkeep
 tests/__pycache__/*
+.deploy/*
+build/*
+dist/*
+quora_questions_pairs.egg-info/*
+quora_questions_pairs/older_versions/*
