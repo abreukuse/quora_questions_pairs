@@ -1,0 +1,7 @@
+include ./README.md
+include ./requirements.txt
+include quora_questions_pairs/VERSION
+include quora_questions_pairs/trained_models/*.pkl
+
+exclude *.log
+global-exclude *.py[co] __pycache__
