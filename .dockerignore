@@ -4,4 +4,7 @@
 !quora_questions_pairs/*.py
 !quora_questions_pairs/VERSION
 !quora_questions_pairs/trained_models/pipeline_v0.2.3.pkl
+!api/*
+!MANIFEST.in
+!setup.py
 !requirements.txt

@@ -1,13 +1,17 @@
 FROM python:3.7
 
-WORKDIR /app
+WORKDIR /quora_questions_pairs
 
-COPY requirements.txt requirements.txt
+COPY ./api ./api
 
-RUN pip install -r requirements.txt
+COPY ./requirements.txt ./requirements.txt
+
+COPY ./setup.py ./setup.py
 
 COPY ./quora_questions_pairs ./quora_questions_pairs
 
+RUN pip install -r api/requirements.txt
+
 ENV PYTHONPATH .
 
-CMD streamlit run quora_questions_pairs/app.py
+CMD streamlit run api/app.py
