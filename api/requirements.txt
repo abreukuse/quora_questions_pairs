@@ -4,4 +4,4 @@ numpy==1.20.1
 streamlit==0.78.0
 
 # local quora_questions_pairs
--e "C:\Users\tkuse\Documents\quora_questions_pairs"
+-e "..\quora_questions_pairs"
